@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModsConfigData>
+    <version>1.5.4297 rev1078</version>
+    <activeMods>
+        <li>garethp.modlistconfigurator</li>
+        <li>zetrith.prepatcher</li>
+        <li>brrainz.harmony</li>
+        <li>taranchuk.fastergameloading</li>
+        <li>bs.fishery</li>
+        <li>ludeon.rimworld</li>
+        <li>bs.performance</li>
+        <li>ludeon.rimworld.royalty</li>
+        <li>ludeon.rimworld.ideology</li>
+        <li>ludeon.rimworld.biotech</li>
+        <li>ludeon.rimworld.anomaly</li>
+        <li>keyz182.inbetween</li>
+        <li>keyz182.keyzmiscresources</li>
+        <li>keyz182.keyzbossbars</li>
+        <li>keyz.keyzitemleveling</li>
+        <li>keyz182.keyzlocalmodalert</li>
+        <li>oskarpotocki.vanillafactionsexpanded.core</li>
+        <li>orpheusly.pawnstorages</li>
+        <li>uuugggg.tdbug</li>
+        <li>vanillaexpanded.achievements</li>
+        <li>oskarpotocki.vfe.tribals</li>
+    </activeMods>
+    <knownExpansions>
+        <li>ludeon.rimworld</li>
+        <li>ludeon.rimworld.royalty</li>
+        <li>ludeon.rimworld.ideology</li>
+        <li>ludeon.rimworld.biotech</li>
+        <li>ludeon.rimworld.anomaly</li>
+    </knownExpansions>
+</ModsConfigData>
