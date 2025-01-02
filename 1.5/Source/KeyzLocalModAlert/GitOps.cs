@@ -7,6 +7,58 @@ namespace KeyzLocalModAlert;
 
 public class GitOps
 {
+    public static string GitError = null;
+    public static bool GitCheckDone = false;
+    public static bool GitAvailable = false;
+
+    public static bool IsGitAvailable(out string errorMessage)
+    {
+        if (GitCheckDone)
+        {
+            errorMessage = GitError;
+            return GitAvailable;
+        }
+        GitCheckDone = true;
+
+        try
+        {
+            Process process = new()
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "git",
+                    Arguments = "--version",
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                }
+            };
+
+            process.Start();
+            string output = process.StandardOutput.ReadToEnd().Trim();
+            process.WaitForExit();
+
+            if (process.ExitCode == 0)
+            {
+                errorMessage = string.Empty;
+                GitAvailable = true;
+                return true;
+            }
+
+            string error = process.StandardError.ReadToEnd().Trim();
+            errorMessage = $"Git command error: {error}";
+            ModLog.Error(errorMessage);
+            return false;
+        }
+        catch (Exception e)
+        {
+            errorMessage = $"Failed to check Git availability: {e.Message}";
+            GitError = errorMessage;
+            ModLog.Error("Exception thrown while checking Git availability", e);
+            return false;
+        }
+    }
     public static bool CheckGit(DirectoryInfo directoryPath, out string errorMessage, out string versionDetails, out string currentBranch, out bool outOfSync)
     {
         try

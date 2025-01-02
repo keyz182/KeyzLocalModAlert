@@ -50,13 +50,14 @@ public static class UIRoot_Entry_Patch
     [HarmonyPostfix]
     public static void DoMainMenuPatch(UIRoot_Entry __instance)
     {
-        Rect panelRect = new Rect(10,150, 300f, 650f);
+        Rect panelRect = new Rect(10,100, 300f, 450f);
 
-        Widgets.DrawRectFast(panelRect, Color.gray);
-        Widgets.DrawRectFast(panelRect.ContractedBy(1f), Widgets.WindowBGFillColor);
+        GUI.color = new Color(1f, 1f, 1f, 1f);
+        Widgets.DrawShadowAround(panelRect);
+        GUI.color = Color.white;
 
         Rect labelRect = new Rect(panelRect.x + 10, panelRect.y + 10, panelRect.width - 10, 30f);
-        Widgets.Label(labelRect, "Local Mod Git Status");
+        Widgets.Label(labelRect, "Local mod git status");
 
         float rowSize = 60f;
 
@@ -65,6 +66,12 @@ public static class UIRoot_Entry_Patch
         Rect scrollingView = new Rect(0f,0f,panelRect.width - 10f - 30f, scrollingViewHeight);
         Rect scrollContainer = panelRect.ContractedBy(10f);
         scrollContainer.yMin += 40f;
+
+        if (!GitOps.IsGitAvailable(out string error))
+        {
+            Widgets.Label(scrollContainer, $"<color=yellow>Git Not Found</color>\n{error}");
+            return;
+        }
 
         Widgets.BeginScrollView(scrollContainer, ref scrollPosition, scrollingView);
 
@@ -108,6 +115,5 @@ public static class UIRoot_Entry_Patch
         {
             Widgets.EndScrollView();
         }
-
     }
 }
